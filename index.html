@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101710">
+  <meta name="description" content="News, Projektinfos und Updates rund um NasumiCraft – den deutschen Minecraft-SMP mit eigenem Forge-Modpack.">
+  <title>NasumiCraft — News & Community</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c110e;
+      --panel: #141d17;
+      --panel-2: #19251d;
+      --line: #2b3b30;
+      --text: #eef6ef;
+      --muted: #9aab9e;
+      --green: #8bd66d;
+      --green-2: #b4f18e;
+      --lime-dark: #29442a;
+      --gold: #d6b66c;
+      --shadow: 0 22px 70px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -15%, rgba(98,151,82,.18), transparent 42%),
+        linear-gradient(180deg, #101811 0%, var(--bg) 50%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .topline { height: 4px; background: linear-gradient(90deg, #355d2e, var(--green), #d6df87, #355d2e); }
+    header { border-bottom: 1px solid rgba(139,214,109,.12); background: rgba(12,17,14,.78); backdrop-filter: blur(14px); }
+    .header-inner { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 13px; text-decoration: none; min-width: 0; }
+    .brand-cube { width: 42px; height: 42px; position: relative; flex: 0 0 auto; image-rendering: pixelated; }
+    .brand-cube::before { content: ""; position: absolute; inset: 0; background: linear-gradient(#9fdf70 0 31%, #548c40 31% 48%, #785236 48% 100%); border: 3px solid #18251a; box-shadow: inset -6px -5px rgba(0,0,0,.16), 3px 3px 0 #344b32; }
+    .brand-cube::after { content: ""; position: absolute; left: 9px; top: 12px; width: 5px; height: 5px; background: #273d24; box-shadow: 14px 0 #273d24, 0 10px #273d24, 14px 10px #273d24; }
+    .brand-name { font-weight: 950; letter-spacing: -.055em; line-height: 1; font-size: 21px; }
+    .brand-name span { color: var(--green); }
+    .brand-sub { color: var(--muted); letter-spacing: .19em; font-size: 9px; font-weight: 800; margin-top: 6px; }
+    .header-links { display: flex; align-items: center; gap: 10px; }
+    .header-links a { color: #c5d3c8; text-decoration: none; font-weight: 750; font-size: 12px; padding: 10px 13px; border-radius: 7px; }
+    .header-links a:hover { color: var(--green-2); background: rgba(139,214,109,.08); }
+    .header-links .discord { background: var(--green); color: #142013; box-shadow: 0 4px 0 #537c40; }
+    .header-links .discord:hover { background: var(--green-2); color: #142013; }
+    .hero { padding: 55px 0 36px; }
+    .hero-box {
+      min-height: 320px; border: 1px solid #3c593b; border-radius: 13px; overflow: hidden; position: relative;
+      background:
+        linear-gradient(90deg, rgba(10,18,12,.98) 0%, rgba(16,31,19,.92) 48%, rgba(26,57,31,.56) 100%),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(184,239,158,.045) 31px 32px),
+        repeating-linear-gradient(90deg, transparent 0 31px, rgba(184,239,158,.045) 31px 32px),
+        #17281a;
+      box-shadow: var(--shadow);
+    }
+    .hero-box::before { content: ""; position: absolute; width: 310px; height: 310px; right: 7%; top: 5px; opacity: .8; transform: rotate(12deg); background: linear-gradient(135deg, #91d96c 0 24%, #548f3c 24% 49%, #735036 49% 100%); clip-path: polygon(25% 0,100% 0,100% 75%,75% 100%,0 100%,0 25%); box-shadow: inset -25px -20px rgba(0,0,0,.2); }
+    .hero-box::after { content: ""; position: absolute; width: 270px; height: 270px; right: 11%; top: 23px; opacity: .22; background: repeating-linear-gradient(0deg, transparent 0 23px, #0a170b 23px 25px), repeating-linear-gradient(90deg, transparent 0 23px, #0a170b 23px 25px); clip-path: polygon(25% 0,100% 0,100% 75%,75% 100%,0 100%,0 25%); }
+    .hero-content { position: relative; z-index: 2; padding: 43px 48px; max-width: 690px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green-2); background: rgba(139,214,109,.10); border: 1px solid rgba(139,214,109,.24); border-radius: 4px; padding: 7px 10px; font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { font-size: clamp(39px, 6vw, 66px); letter-spacing: -.065em; line-height: .98; margin: 22px 0 17px; font-weight: 950; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 510px; font-size: 14px; line-height: 1.75; color: #c0cec2; margin: 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 16px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 900; border: 1px solid transparent; transition: .18s ease; }
+    .btn-primary { background: var(--green); color: #152313; box-shadow: 0 4px 0 #4d7938; }
+    .btn-primary:hover { transform: translateY(-1px); background: var(--green-2); }
+    .btn-ghost { border-color: #496349; color: #dce9dd; background: rgba(12,20,13,.55); }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green-2); }
+    .hero-stamp { position: absolute; right: 30px; bottom: 24px; z-index: 2; border: 1px solid rgba(199,238,179,.28); background: rgba(8,17,10,.62); padding: 9px 12px; color: #d2e5ce; font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; transform: rotate(-4deg); }
+    .facts { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 0 0 44px; }
+    .fact { background: linear-gradient(145deg, rgba(26,39,29,.9), rgba(17,26,19,.9)); border: 1px solid var(--line); border-radius: 8px; padding: 17px 19px; min-height: 85px; }
+    .fact-k { color: var(--muted); text-transform: uppercase; font-size: 9px; letter-spacing: .15em; font-weight: 900; }
+    .fact-v { font-size: 16px; font-weight: 900; margin-top: 7px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+    .section-kicker { color: var(--green); font-size: 10px; font-weight: 950; letter-spacing: .18em; text-transform: uppercase; }
+    h2 { margin: 7px 0 0; font-size: clamp(25px,3vw,33px); letter-spacing: -.05em; line-height: 1.05; }
+    .section-sub { font-size: 12px; color: var(--muted); margin-top: 7px; }
+    .search { width: min(250px, 42vw); padding: 11px 13px; background: #111a14; border: 1px solid var(--line); border-radius: 6px; color: var(--text); outline: none; font-size: 12px; }
+    .search:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(139,214,109,.08); }
+    .filters { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 19px; }
+    .filter { padding: 8px 12px; border-radius: 5px; border: 1px solid var(--line); color: #aebdb1; background: #121a15; font-size: 10px; font-weight: 850; }
+    .filter:hover, .filter.active { color: #142313; background: var(--green); border-color: var(--green); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .card { overflow: hidden; background: linear-gradient(155deg, #19251d, #111913 85%); border: 1px solid var(--line); border-radius: 9px; min-width: 0; transition: .2s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-3px); border-color: #668b56; box-shadow: 0 13px 32px rgba(0,0,0,.2); }
+    .card-art { min-height: 138px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(140deg, #243d27, #17251a); border-bottom: 1px solid var(--line); }
+    .card-art::before { content: ""; position: absolute; inset: 0; opacity: .17; background: repeating-linear-gradient(0deg, transparent 0 19px, #c4f2a5 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, #c4f2a5 19px 20px); }
+    .card-art::after { content: ""; position: absolute; width: 100px; height: 100px; border: 10px solid rgba(198,242,170,.12); transform: rotate(45deg); }
+    .art-icon { position: relative; z-index: 1; font-size: 48px; filter: drop-shadow(0 7px 0 rgba(0,0,0,.25)); }
+    .featured-card { grid-column: span 2; display: grid; grid-template-columns: .85fr 1.15fr; }
+    .featured-card .card-art { min-height: 100%; border-bottom: 0; border-right: 1px solid var(--line); }
+    .featured-card .art-icon { font-size: 66px; }
+    .card-body { padding: 18px; display: flex; flex-direction: column; flex: 1; }
+    .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 10px; }
+    .tag { color: var(--green-2); background: rgba(139,214,109,.1); border: 1px solid rgba(139,214,109,.2); border-radius: 3px; padding: 4px 7px; font-size: 9px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .card h3 { font-size: 18px; line-height: 1.2; letter-spacing: -.035em; margin: 14px 0 9px; }
+    .card p { color: #aebeb1; font-size: 12px; line-height: 1.7; margin: 0 0 17px; }
+    .card-bottom { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid rgba(139,214,109,.11); padding-top: 12px; }
+    .source-link { color: #93d978; text-decoration: none; font-weight: 800; font-size: 10px; }
+    .source-link:hover { color: var(--green-2); text-decoration: underline; }
+    .read-btn { color: #e2eee3; background: transparent; border: 0; padding: 5px 0 5px 8px; font-weight: 900; font-size: 10px; }
+    .read-btn:hover { color: var(--green-2); }
+    .empty { display: none; border: 1px dashed #405342; border-radius: 8px; padding: 38px 20px; text-align: center; color: var(--muted); font-size: 13px; }
+    .info-strip { margin: 38px 0 55px; display: flex; gap: 15px; align-items: flex-start; padding: 17px 19px; border: 1px solid #3a4937; border-left: 3px solid var(--gold); border-radius: 6px; background: rgba(214,182,108,.055); }
+    .info-icon { font-size: 20px; }
+    .info-strip strong { display: block; font-size: 12px; margin-bottom: 4px; }
+    .info-strip p { margin: 0; color: #aab8ac; font-size: 11px; line-height: 1.65; }
+    .links-panel { margin-bottom: 52px; border: 1px solid var(--line); border-radius: 9px; padding: 22px; background: linear-gradient(120deg, #19271c, #111913); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .links-panel h2 { font-size: 20px; }
+    .links-panel p { color: var(--muted); font-size: 11px; margin: 7px 0 0; }
+    .official-links { display: flex; flex-wrap: wrap; gap: 9px; }
+    .official-links a { text-decoration: none; border: 1px solid #405641; color: #dce9dc; padding: 10px 12px; border-radius: 5px; font-size: 10px; font-weight: 850; }
+    .official-links a:hover { color: var(--green-2); border-color: var(--green); }
+    footer { border-top: 1px solid rgba(139,214,109,.12); padding: 22px 0 30px; color: #78877b; font-size: 10px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .footer-brand { color: #c7d5c9; font-weight: 950; letter-spacing: .04em; }
+    .modal { position: fixed; inset: 0; z-index: 20; display: none; align-items: center; justify-content: center; padding: 18px; background: rgba(0,0,0,.78); backdrop-filter: blur(8px); }
+    .modal.open { display: flex; }
+    .modal-box { width: min(680px, 100%); max-height: min(82vh, 800px); overflow: auto; background: #131d16; border: 1px solid #486044; border-radius: 10px; box-shadow: var(--shadow); }
+    .modal-top { min-height: 165px; display: grid; place-items: center; position: relative; background: linear-gradient(135deg, #29482d, #17251a); border-bottom: 1px solid var(--line); }
+    .modal-top .art-icon { font-size: 62px; }
+    .modal-close { position: absolute; right: 13px; top: 13px; border: 1px solid #61785b; color: white; background: rgba(0,0,0,.3); width: 32px; height: 32px; border-radius: 5px; font-size: 18px; }
+    .modal-content { padding: 25px; }
+    .modal-content h2 { font-size: 29px; margin: 13px 0 8px; }
+    .modal-date { color: var(--muted); font-size: 10px; margin-bottom: 19px; }
+    .modal-content p { white-space: pre-line; color: #c1cec3; font-size: 13px; line-height: 1.85; margin: 0 0 13px; }
+    .modal-source { display: inline-block; margin-top: 8px; color: var(--green-2); font-size: 11px; font-weight: 850; text-decoration: none; }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .featured-card { grid-column: span 2; }
+      .hero-box::before { right: -10%; opacity: .45; }
+      .hero-box::after { right: -6%; opacity: .16; }
+      .hero-content { max-width: 620px; }
+      .links-panel { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 26px, 1160px); }
+      .header-inner { min-height: 67px; }
+      .brand-cube { width: 35px; height: 35px; }
+      .brand-name { font-size: 18px; }
+      .brand-sub { font-size: 8px; }
+      .header-links a:not(.discord) { display: none; }
+      .hero { padding: 25px 0 25px; }
+      .hero-box { min-height: 355px; }
+      .hero-content { padding: 33px 23px; }
+      .hero-box::before { width: 225px; height: 225px; top: 125px; right: -75px; opacity: .28; }
+      .hero-box::after { width: 200px; height: 200px; top: 135px; right: -65px; }
+      .hero-stamp { bottom: 12px; right: 13px; }
+      .facts { gap: 7px; margin-bottom: 36px; }
+      .fact { padding: 12px 10px; min-height: 76px; }
+      .fact-v { font-size: 12px; }
+      .fact-k { font-size: 8px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .search { width: 100%; }
+      .grid { grid-template-columns: 1fr; }
+      .featured-card { grid-column: auto; display: flex; }
+      .featured-card .card-art { min-height: 135px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .featured-card .art-icon { font-size: 50px; }
+      .card-art { min-height: 125px; }
+      .info-strip { margin: 30px 0 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="NasumiCraft Startseite">
+        <span class="brand-cube" aria-hidden="true"></span>
+        <span><span class="brand-name">NASUMI<span>CRAFT</span></span><span class="brand-sub">NEWS · COMMUNITY · SMP</span></span>
+      </a>
+      <nav class="header-links" aria-label="Hauptnavigation">
+        <a href="#news">News</a>
+        <a href="#about">Über NasumiCraft</a>
+        <a class="discord" href="https://discord.gg/hQgYxdRf8x" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-box">
+        <div class="hero-content">
+          <div class="eyebrow"><span>✦</span> Das NasumiCraft News-Portal</div>
+          <h1 id="hero-title">Eine Welt.<br><span>Viele Stories.</span></h1>
+          <p class="hero-copy">Alles rund um NasumiCraft an einem Ort: Projektinfos, Modpack-Neuigkeiten und Meldungen aus der Community. Willkommen im News-Portal!</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#news">News entdecken <span>↓</span></a>
+            <a class="btn btn-ghost" href="https://linktr.ee/nasumicraft_de" target="_blank" rel="noopener noreferrer">Offizielle Links ↗</a>
+          </div>
+        </div>
+        <div class="hero-stamp">NASUMICRAFT // EST. IN BLOCKS</div>
+      </div>
+    </section>
+
+    <section class="facts" id="about" aria-label="NasumiCraft Projektinformationen">
+      <div class="fact"><div class="fact-k">Projekt</div><div class="fact-v">Deutscher Minecraft-SMP</div></div>
+      <div class="fact"><div class="fact-k">Modloader</div><div class="fact-v">Forge · Season 2</div></div>
+      <div class="fact"><div class="fact-k">Community</div><div class="fact-v">Simple Voice Chat</div></div>
+    </section>
+
+    <section id="news" aria-labelledby="news-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Aus der Welt von NasumiCraft</div>
+          <h2 id="news-title">News & Einblicke</h2>
+          <div class="section-sub">Projektinfos und Meldungen rund um den Server.</div>
+        </div>
+        <input class="search" id="search" type="search" placeholder="⌕ News durchsuchen …" aria-label="News durchsuchen">
+      </div>
+      <div class="filters" id="filters" aria-label="News-Kategorien">
+        <button class="filter active" data-filter="Alle">Alle Beiträge</button>
+        <button class="filter" data-filter="Projekt">Projekt</button>
+        <button class="filter" data-filter="Modpack">Modpack</button>
+        <button class="filter" data-filter="Community">Community</button>
+      </div>
+      <div class="grid" id="news-grid"></div>
+      <div class="empty" id="empty">Keine passenden Beiträge gefunden. Ändere den Suchbegriff oder wähle eine andere Kategorie.</div>
+    </section>
+
+    <aside class="info-strip">
+      <div class="info-icon">ⓘ</div>
+      <div><strong>Hinweis zu den Serverdaten</strong><p>Server-IP, Live-Spielerzahlen und ein aktueller Online-Status sind hier bewusst nicht eingetragen: Dafür habe ich keine verlässliche aktuelle öffentliche Angabe gefunden. Schau für aktuelle Informationen am besten in die offiziellen NasumiCraft-Kanäle.</p></div>
+    </aside>
+
+    <section class="links-panel" aria-label="Offizielle NasumiCraft-Seiten">
+      <div><div class="section-kicker">Weiter stöbern</div><h2>Triff NasumiCraft im Netz.</h2><p>Offizielle Anlaufstellen und das veröffentlichte Modpack.</p></div>
+      <div class="official-links">
+        <a href="https://linktr.ee/nasumicraft_de" target="_blank" rel="noopener noreferrer">Offizielle Links ↗</a>
+        <a href="https://discord.gg/hQgYxdRf8x" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+        <a href="https://www.curseforge.com/minecraft/modpacks/nasumicraft-modpack" target="_blank" rel="noopener noreferrer">CurseForge-Modpack ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div><span class="footer-brand">NASUMICRAFT</span> <span>— News & Community</span></div>
+      <div>Statische HTML-Seite · News direkt im Quellcode pflegen</div>
+    </div>
+  </footer>
+
+  <div class="modal" id="article-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <article class="modal-box">
+      <div class="modal-top"><span class="art-icon" id="modal-icon">⛏️</span><button class="modal-close" id="modal-close" aria-label="Schließen">×</button></div>
+      <div class="modal-content">
+        <span class="tag" id="modal-category"></span>
+        <h2 id="modal-title"></h2>
+        <div class="modal-date" id="modal-date"></div>
+        <div id="modal-body"></div>
+        <a class="modal-source" id="modal-source" href="#" target="_blank" rel="noopener noreferrer">Quelle öffnen ↗</a>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    /* ================================================================
+       NASUMICRAFT NEWS — HIER NEWS DIREKT IM HTML EINFÜGEN
+       ---------------------------------------------------------------
+       Neue Meldung: Einfach ein weiteres Objekt in das NEWS-Array setzen.
+       Kein Backend, kein WebSocket, kein Admin-Login, keine Datenbank.
+
+       Felder:
+       id       = eindeutige Kennung (z.B. "update-2026-11")
+       category = "Projekt", "Modpack" oder "Community"
+       date     = Datum oder kurze Kennzeichnung
+       icon     = Emoji für das Beitragsbild
+       title    = Überschrift
+       excerpt  = kurzer Text auf der News-Karte
+       body     = ganzer Beitrag; Absätze mit \n\n trennen
+       source   = URL zur Quelle (optional; sonst "")
+       sourceName = Quellenname (optional)
+       featured = true für hervorgehobenen Beitrag, sonst false
+       ================================================================ */
+    const NEWS = [
+      {
+        id: "nasumicraft-profil",
+        category: "Projekt",
+        date: "Projektprofil",
+        icon: "🌍",
+        title: "Was ist NasumiCraft?",
+        excerpt: "NasumiCraft ist ein deutschsprachiger Minecraft-SMP mit eigenem Modpack und Simple Voice Chat.",
+        body: "NasumiCraft wird auf CurseForge als deutscher Minecraft-SMP beschrieben. Zum Projekt gehört ein eigenes Server-Modpack. Simple Voice Chat wird ebenfalls ausdrücklich genannt.\n\nDie Projektbeschreibung stellt außerdem die Community und das gemeinsame Spielen in den Mittelpunkt.",
+        source: "https://www.curseforge.com/minecraft/modpacks/nasumicraft-modpack",
+        sourceName: "CurseForge · NasumiCraft",
+        featured: true
+      },
+      {
+        id: "nasumicraft-season-2",
+        category: "Modpack",
+        date: "17.10.2025 · CurseForge",
+        icon: "📦",
+        title: "Season 2: Modpack für Forge 1.20.1",
+        excerpt: "Die auf CurseForge gelistete Season-2-Veröffentlichung ist für Minecraft 1.20.1 mit Forge verfügbar.",
+        body: "Auf der CurseForge-Projektseite ist als Hauptdatei „NasumiCraft - Season 2 - 1.20.1-1.0.1“ aufgeführt. Als Minecraft-Version wird 1.20.1 und als Modloader Forge angegeben.\n\nDie Projektseite nennt den 17. Oktober 2025 als Datum der letzten Aktualisierung. Das ist ein Veröffentlichungs-/Änderungsdatum des Modpacks und keine Aussage darüber, ob der Server heute online ist.",
+        source: "https://www.curseforge.com/minecraft/modpacks/nasumicraft-modpack",
+        sourceName: "CurseForge · Modpack",
+        featured: false
+      },
+      {
+        id: "nasumicraft-zusammen-spielen",
+        category: "Community",
+        date: "Aus der Projektbeschreibung",
+        icon: "🤝",
+        title: "Gemeinsam spielen, questen und bauen",
+        excerpt: "Die Modpack-Beschreibung erwähnt Quests, Teams und eigene Basen als Bestandteile des Spielerlebnisses.",
+        body: "Laut der öffentlichen CurseForge-Beschreibung können Spielende Quests erledigen, Teams bilden und eigene Basen bauen — allein oder gemeinsam mit anderen.\n\nEin älterer Eintrag zu NasumiCraft S2 auf DISBOARD beschreibt das Projekt außerdem als eigenes Forge-Projekt mit mehr als 50 Mods. Diese Angabe bezieht sich auf den damaligen Eintrag und kann sich inzwischen geändert haben.",
+        source: "https://www.curseforge.com/minecraft/modpacks/nasumicraft-modpack",
+        sourceName: "CurseForge · Projektbeschreibung",
+        featured: false
+      }
+    ];
+
+    const grid = document.getElementById("news-grid");
+    const search = document.getElementById("search");
+    const empty = document.getElementById("empty");
+    const modal = document.getElementById("article-modal");
+    let activeCategory = "Alle";
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+
+    function cardTemplate(item, index) {
+      const featuredClass = item.featured && index === 0 ? " featured-card" : "";
+      const source = item.source
+        ? `<a class="source-link" href="${escapeHTML(item.source)}" target="_blank" rel="noopener noreferrer">Quelle: ${escapeHTML(item.sourceName || "Externer Link")} ↗</a>`
+        : `<span class="source-link">NasumiCraft</span>`;
+      return `
+        <article class="card${featuredClass}">
+          <div class="card-art"><span class="art-icon" aria-hidden="true">${escapeHTML(item.icon || "⛏️")}</span></div>
+          <div class="card-body">
+            <div class="meta"><span class="tag">${escapeHTML(item.category)}</span><span>${escapeHTML(item.date)}</span></div>
+            <h3>${escapeHTML(item.title)}</h3>
+            <p>${escapeHTML(item.excerpt)}</p>
+            <div class="card-bottom">${source}<button class="read-btn" type="button" data-open="${escapeHTML(item.id)}">Beitrag lesen →</button></div>
+          </div>
+        </article>`;
+    }
+
+    function renderNews() {
+      const term = search.value.trim().toLocaleLowerCase("de");
+      const filtered = NEWS.filter(item => {
+        const categoryMatch = activeCategory === "Alle" || item.category === activeCategory;
+        const searchable = [item.title, item.excerpt, item.body, item.category].join(" ").toLocaleLowerCase("de");
+        return categoryMatch && searchable.includes(term);
+      });
+      grid.innerHTML = filtered.map(cardTemplate).join("");
+      empty.style.display = filtered.length ? "none" : "block";
+    }
+
+    function openArticle(id) {
+      const item = NEWS.find(entry => entry.id === id);
+      if (!item) return;
+      document.getElementById("modal-icon").textContent = item.icon || "⛏️";
+      document.getElementById("modal-category").textContent = item.category;
+      document.getElementById("modal-title").textContent = item.title;
+      document.getElementById("modal-date").textContent = item.date;
+      const body = document.getElementById("modal-body");
+      body.replaceChildren();
+      String(item.body || "").split(/\n\s*\n/).forEach(paragraph => {
+        const p = document.createElement("p");
+        p.textContent = paragraph;
+        body.appendChild(p);
+      });
+      const source = document.getElementById("modal-source");
+      if (item.source) {
+        source.href = item.source;
+        source.textContent = `Quelle: ${item.sourceName || "Externer Link"} ↗`;
+        source.style.display = "inline-block";
+      } else {
+        source.style.display = "none";
+      }
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      document.getElementById("modal-close").focus();
+    }
+
+    function closeArticle() {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("filters").addEventListener("click", event => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+      activeCategory = button.dataset.filter;
+      document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item === button));
+      renderNews();
+    });
+    search.addEventListener("input", renderNews);
+    grid.addEventListener("click", event => {
+      const button = event.target.closest("[data-open]");
+      if (button) openArticle(button.dataset.open);
+    });
+    document.getElementById("modal-close").addEventListener("click", closeArticle);
+    modal.addEventListener("click", event => { if (event.target === modal) closeArticle(); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape" && modal.classList.contains("open")) closeArticle(); });
+
+    renderNews();
+  </script>
+</body>
+</html>
